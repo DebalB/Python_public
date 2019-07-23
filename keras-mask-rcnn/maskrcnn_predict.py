@@ -12,6 +12,7 @@ import imutils
 import random
 import cv2
 import os
+import sys
 
 # construct the argument parse and parse the arguments
 ap = argparse.ArgumentParser()
@@ -23,11 +24,24 @@ ap.add_argument("-i", "--image", required=True,
 	help="path to input image to apply Mask R-CNN to")
 args = vars(ap.parse_args())
 
+# Check if labels path is valid
+if (not os.path.exists(args["labels"])):
+	print("[ERR] Labels path {} does not exist".format(args["labels"]));
+	sys.exit();
+# Check if weights path is valid
+elif (not os.path.exists(args["weights"])):
+	# Check if configPath path is valid
+	print("[ERR] Weights path {} does not exist".format(args["weights"]));
+	sys.exit();
+# Check if image path is valid
+elif (not os.path.exists(args["image"])):
+	print("[ERR] Image path {} does not exist".format(args["image"]));
+	sys.exit();
+	
 # load the class label names from disk, one label per line
 CLASS_NAMES = open(args["labels"]).read().strip().split("\n")
 
 # generate random (but visually distinct) colors for each class label
-# (thanks to Matterport Mask R-CNN for the method!)
 hsv = [(i / len(CLASS_NAMES), 1, 1.0) for i in range(len(CLASS_NAMES))]
 COLORS = list(map(lambda c: colorsys.hsv_to_rgb(*c), hsv))
 random.seed(42)
