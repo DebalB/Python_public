@@ -7,6 +7,8 @@ import argparse
 import imutils
 import time
 import cv2
+import os
+import sys
 
 # construct the argument parse and parse the arguments
 ap = argparse.ArgumentParser()
@@ -23,10 +25,18 @@ ap.add_argument("-w", "--width", type=int, default=500,
 args = vars(ap.parse_args())
 
 # load the class label names
+# Check if classes path is valid
+if (not os.path.exists(args["classes"])):
+	print("[ERR] Classes path {} does not exist".format(args["classes"]));
+	sys.exit();
 CLASSES = open(args["classes"]).read().strip().split("\n")
 
 # if a colors file was supplied, load it from disk
 if args["colors"]:
+	# Check if colors path is valid
+	if (not os.path.exists(args["colors"])):
+		print("[ERR] Colors path {} does not exist".format(args["colors"]));
+		sys.exit();
 	COLORS = open(args["colors"]).read().strip().split("\n")
 	COLORS = [np.array(c.split(",")).astype("int") for c in COLORS]
 	COLORS = np.array(COLORS, dtype="uint8")
@@ -56,11 +66,20 @@ for (i, (className, color)) in enumerate(zip(CLASSES, COLORS)):
 
 # load our serialized model from disk
 print("[INFO] loading model...")
+
+# Check if model path is valid
+if (not os.path.exists(args["model"])):
+	print("[ERR] Model path {} does not exist".format(args["model"]));
+	sys.exit();
 net = cv2.dnn.readNet(args["model"])
 
 # load the input image, resize it, and construct a blob from it,
 # but keeping mind mind that the original input image dimensions
 # ENet was trained on was 1024x512
+# Check if image path is valid
+if (not os.path.exists(args["image"])):
+	print("[ERR] Image path {} does not exist".format(args["image"]));
+	sys.exit();
 image = cv2.imread(args["image"])
 image = imutils.resize(image, width=args["width"])
 blob = cv2.dnn.blobFromImage(image, 1 / 255.0, (1024, 512), 0,

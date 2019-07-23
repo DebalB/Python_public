@@ -9,6 +9,7 @@ import random
 import time
 import cv2
 import os
+import sys
 
 # construct the argument parse and parse the arguments
 ap = argparse.ArgumentParser()
@@ -27,11 +28,19 @@ args = vars(ap.parse_args())
 # load the COCO class labels our Mask R-CNN was trained on
 labelsPath = os.path.sep.join([args["mask_rcnn"],
 	"object_detection_classes_coco.txt"])
+# Check if labelsPath path is valid
+if (not os.path.exists(labelsPath)):
+	print("[ERR] Labels path {} does not exist".format(labelsPath));
+	sys.exit();
 LABELS = open(labelsPath).read().strip().split("\n")
 
 # load the set of colors that will be used when visualizing a given
 # instance segmentation
 colorsPath = os.path.sep.join([args["mask_rcnn"], "colors.txt"])
+# Check if colorsPath path is valid
+if (not os.path.exists(colorsPath)):
+	print("[ERR] Labels path {} does not exist".format(colorsPath));
+	sys.exit();
 COLORS = open(colorsPath).read().strip().split("\n")
 COLORS = [np.array(c.split(",")).astype("int") for c in COLORS]
 COLORS = np.array(COLORS, dtype="uint8")
@@ -42,6 +51,20 @@ weightsPath = os.path.sep.join([args["mask_rcnn"],
 configPath = os.path.sep.join([args["mask_rcnn"],
 	"mask_rcnn_inception_v2_coco_2018_01_28.pbtxt"])
 
+# Check if weightsPath path is valid
+if (not os.path.exists(weightsPath)):
+	print("[ERR] Weights path {} does not exist".format(weightsPath));
+	sys.exit();
+# Check if configPath path is valid
+elif (not os.path.exists(configPath)):
+	# Check if configPath path is valid
+	print("[ERR] Config path {} does not exist".format(configPath));
+	sys.exit();
+# Check if image path is valid
+elif (not os.path.exists(args["image"])):
+	print("[ERR] Image path {} does not exist".format(args["image"]));
+	sys.exit();
+	
 # load our Mask R-CNN trained on the COCO dataset (90 classes)
 # from disk
 print("[INFO] loading Mask R-CNN from disk...")
@@ -92,7 +115,7 @@ for i in range(0, boxes.shape[2]):
 		# box, and then finally threshold to create a *binary* mask
 		mask = masks[i, classID]
 		mask = cv2.resize(mask, (boxW, boxH),
-			interpolation=cv2.INTER_NEAREST)
+			interpolation=cv2.INTER_CUBIC)
 		mask = (mask > args["threshold"])
 
 		# extract the ROI of the image
