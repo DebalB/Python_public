@@ -118,3 +118,4 @@ venv.bak/
 *.caffemodel
 *.pb
 *.net
+*.h5
