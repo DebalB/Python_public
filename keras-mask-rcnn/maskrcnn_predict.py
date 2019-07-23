@@ -22,6 +22,10 @@ ap.add_argument("-l", "--labels", required=True,
 	help="path to class labels file")
 ap.add_argument("-i", "--image", required=True,
 	help="path to input image to apply Mask R-CNN to")
+ap.add_argument("-wi", "--width", type=int, default=1024,
+	help="desired width (in pixels) of input image")
+ap.add_argument("-he", "--height", type=int, default=1024,
+	help="desired height (in pixels) of input image")
 args = vars(ap.parse_args())
 
 # Check if labels path is valid
@@ -75,7 +79,7 @@ model.load_weights(args["weights"], by_name=True)
 # ordering, and resize the image
 image = cv2.imread(args["image"])
 image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
-image = imutils.resize(image, width=512)
+image = imutils.resize(image, width=args["width"], height=args["height"])
 
 # perform a forward pass of the network to obtain the results
 print("[INFO] making predictions with Mask R-CNN...")
