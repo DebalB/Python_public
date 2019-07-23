@@ -20,8 +20,10 @@ ap.add_argument("-i", "--image", required=True,
 	help="path to input image")
 ap.add_argument("-l", "--colors", type=str,
 	help="path to .txt file containing colors for labels")
-ap.add_argument("-w", "--width", type=int, default=500,
+ap.add_argument("-w", "--width", type=int, default=512,
 	help="desired width (in pixels) of input image")
+ap.add_argument("-he", "--height", type=int, default=1024,
+	help="desired height (in pixels) of input image")
 args = vars(ap.parse_args())
 
 # load the class label names
@@ -81,7 +83,7 @@ if (not os.path.exists(args["image"])):
 	print("[ERR] Image path {} does not exist".format(args["image"]));
 	sys.exit();
 image = cv2.imread(args["image"])
-image = imutils.resize(image, width=args["width"])
+image = imutils.resize(image, width=args["width"], height=args["height"])
 blob = cv2.dnn.blobFromImage(image, 1 / 255.0, (1024, 512), 0,
 	swapRB=True, crop=False)
 
@@ -112,6 +114,8 @@ mask = COLORS[classMap]
 # original size of the input image (we're not using the class map
 # here for anything else but this is how you would resize it just in
 # case you wanted to extract specific pixels/classes)
+# Cant change 'interpolation' to any other value since need to preserve
+# the discreet values of mask and classMap
 mask = cv2.resize(mask, (image.shape[1], image.shape[0]),
 	interpolation=cv2.INTER_NEAREST)
 classMap = cv2.resize(classMap, (image.shape[1], image.shape[0]),
