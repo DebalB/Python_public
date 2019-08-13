@@ -78,8 +78,10 @@ model.load_weights(args["weights"], by_name=True)
 # load the input image, convert it from BGR to RGB channel
 # ordering, and resize the image
 image = cv2.imread(args["image"])
+print("orig image.shape=",image.shape)
 image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
 image = imutils.resize(image, width=args["width"], height=args["height"])
+print("new image.shape=",image.shape)
 
 # perform a forward pass of the network to obtain the results
 print("[INFO] making predictions with Mask R-CNN...")
@@ -91,6 +93,8 @@ for i in range(0, r["rois"].shape[0]):
 	# grab the color to visualize the mask (in BGR format)
 	classID = r["class_ids"][i]
 	mask = r["masks"][:, :, i]
+	print("mask.shape=",mask.shape)
+	# reversing the list to convert RGB to BGR
 	color = COLORS[classID][::-1]
 
 	# visualize the pixel-wise mask of the object
