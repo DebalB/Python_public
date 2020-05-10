@@ -1,5 +1,5 @@
 # USAGE
-# python pool_table_detection.py --image images/image1.png
+# python pool_table_detection.py --image ../images/img1.jpg
 
 # import the necessary packages
 import argparse
