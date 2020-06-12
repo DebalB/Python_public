@@ -27,7 +27,7 @@ min_weapon_area = 5000
 # create_interval = 100
 create_interval = 25
 game_lose_cnt = 50
-game_win_cnt = 1000
+game_win_cnt = 5000
 
 monster_list = []
 monster_images = []
@@ -48,10 +48,13 @@ def add_monster_to_list(image, width, centx, centy):
 def draw_monsters_in_list(frame):
   for item,(centx,centy) in monster_list:
     # cv2.circle(frame,(centx,centy),item.shape[1],(255,0,0),-1)
-    top_leftx = centx - (item.shape[1]//2)
-    top_lefty = centy - (item.shape[0]//2)
-    frame[top_lefty:top_lefty+item.shape[0], top_leftx:top_leftx+item.shape[1]] = item
-  
+    leftx = centx - (item.shape[1]//2)
+    lefty = centy - (item.shape[0]//2)
+    rightx = leftx+item.shape[1]
+    righty = lefty+item.shape[0]
+    # print(frame.shape, lefty, righty, leftx, rightx)
+    frame[lefty:righty, leftx:rightx] = item
+  # print("---")
   return frame
 
 def find_monsters_to_kill(frame, box):
@@ -157,8 +160,11 @@ while True:
     monster_image = random.choice(monster_images)
     new_width = int(monster_image.shape[1] * rand_scale)
     # select a centroid pixel
-    cent_x = random.randrange(border_size, screen_width-border_size, 100)
-    cent_y = random.randrange(border_size, screen_height-border_size, 100)
+    # cent_x = random.randrange(border_size, screen_width-border_size, 100)
+    # cent_y = random.randrange(border_size, screen_height-border_size, 100)
+    cent_x = int(np.random.uniform(low=border_size, high=screen_width-border_size))
+    cent_y = int(np.random.uniform(low=border_size, high=screen_height-border_size))
+    
     add_monster_to_list(monster_image,new_width,cent_x,cent_y)
     monsters_added += 1
   
