@@ -128,6 +128,9 @@ def find_weapon_coordinates(frame):
   
   return (frame, box)
   
+def reset_game():
+  monster_list = []
+  create_interval = 25
   
 # grab a reference to the webcam and open the output file for writing
 camera = cv2.VideoCapture(0)
@@ -149,6 +152,7 @@ while True:
   # resize the frame, convert the frame to grayscale, and detect faces in the frame
   # frame = imutils.resize(frame, width=1000)
   frame = cv2.resize(frame, (screen_width,screen_height))
+  frame = cv2.flip(frame,1)
   
   if refresh_flag == True and monsters_killed != 0 and monsters_killed % 5 == 0 and create_interval > 2:
     print("reducing monster creation time")
@@ -193,20 +197,23 @@ while True:
   if monsters_added - monsters_killed >= game_lose_cnt:
     cv2.putText(frame,"GAME OVER !! YOU LOSE",(screen_width//6,screen_height//2),cv2.FONT_HERSHEY_SIMPLEX,2.0,(0, 0, 255), 5)
     cv2.imshow("Frame", frame)
-    cv2.waitKey(0)
-    break
-  
-  if monsters_killed >= game_win_cnt:
+    key = cv2.waitKey(0) & 0xFF
+  elif monsters_killed >= game_win_cnt:
     cv2.putText(frame,"GAME OVER !! YOU WIN",(screen_width//6,screen_height//2),cv2.FONT_HERSHEY_SIMPLEX,2.0,(0, 255, 0), 5)
     cv2.imshow("Frame", frame)
-    cv2.waitKey(0)
+    key = cv2.waitKey(0) & 0xFF
+  else:
+    cv2.imshow("Frame", frame)
+    key = cv2.waitKey(1) & 0xFF
+    
+  if key == ord('q') or key == 27:
     break
-  
-  # show the frame and record if the user presses a key
-  cv2.imshow("Frame", frame)
-  key = cv2.waitKey(1) & 0xFF
-  if key == ord("q"):
-    break
+  elif key == ord('r'):
+    reset_game()
+    cnt = 0
+    refresh_flag = False
+    monsters_killed = 0
+    monsters_added = 0
     
 camera.release()
 cv2.destroyAllWindows()
