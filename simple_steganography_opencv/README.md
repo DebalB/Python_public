@@ -12,11 +12,13 @@ Refer to the [original implementation using PIL library]( https://github.com/kel
 Refer to this [excellent blog post](https://towardsdatascience.com/steganography-hiding-an-image-inside-another-77ca66b2acb1) explaining the original concept and implementation.
 
 **Why did I implement it in OpenCV?**
+
 Because I am big fan of OpenCV and love to use it for any image processing applications I develop (not that I don't appreciate how useful the PIL library is).
 
 There is however an obvious (order of magnitude) performance impact, possibly due to the underlying numpy library. Hence I wouldn't recommend this approach for bulk image processing applications.
 
 ## Usage
+
 Install the requirements:
 
 ```
