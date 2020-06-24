@@ -169,7 +169,7 @@ def merge(img1, img2, output):
 
 
 @cli.command()
-@click.option('--img', required=True, type=str, help='Image that will be hidden')
+@click.option('--img', required=True, type=str, help='Image that hides another image')
 @click.option('--output', required=True, type=str, help='Output image')
 def unmerge(img, output):
     start_time = time.time()
