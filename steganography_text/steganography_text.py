@@ -201,8 +201,9 @@ class Steganography(object):
         video_out = None
         if visualize.lower() == 'true':
           # Define the codec and create VideoWriter object
-          fourcc = cv2.VideoWriter_fourcc(*'MP4V')
-          # fourcc = cv2.VideoWriter_fourcc(*'X264')
+          #fourcc = cv2.VideoWriter_fourcc(*'MP4V')
+          #fourcc = cv2.VideoWriter_fourcc(*'X264')
+          fourcc = cv2.VideoWriter_fourcc(*'avc1')
           # fourcc = cv2.VideoWriter_fourcc(*'XVID')
           video_width = displayWidth
           video_height = int(0.5*displayWidth*im_shape[0]/im_shape[1])
