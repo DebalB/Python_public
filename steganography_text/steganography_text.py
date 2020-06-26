@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 # Usage --
-# python steganography_text.py merge --img=res/img1.jpg --text=res/text1.txt --output=res/output.png
-# python steganography_text.py unmerge --img=res/output.png --output=res/text_output.txt
-# python steganography_text.py unmerge --img=res/output.png --output=res/text_output.txt --visualize True
+# python steganography_text.py hide --img=res/img1.jpg --text=res/text1.txt --output=res/output.png
+# python steganography_text.py unhide --img=res/output.png --output=res/text_output.txt
+# python steganography_text.py unhide --img=res/output.png --output=res/text_output.txt --visualize true
 
 import click
 import cv2
@@ -49,13 +49,13 @@ class Steganography(object):
                 int(b, 2))
 
     @staticmethod
-    def __merge_rgb(rgb1, rgb2):
-        """Merge two RGB tuples.
+    def __hide_rgb(rgb1, rgb2):
+        """hide two RGB tuples.
 
         :param rgb1: A string tuple (e.g. ("00101010", "11101011", "00010110"))
         :param rgb2: Another string tuple
         (e.g. ("00101010", "11101011", "00010110"))
-        :return: An integer tuple with the two RGB values merged.
+        :return: An integer tuple with the two RGB values hidden.
         """
         r1, g1, b1 = rgb1
         r2, g2, b2 = rgb2
@@ -65,13 +65,13 @@ class Steganography(object):
         return rgb
 
     @staticmethod
-    def merge(img, text, debug=False):
-        """Merge an image content with a text.
+    def hide(img, text, debug=False):
+        """hide an image content with a text.
 
         :param img: Image file
         :param text: Text file
         :param debug: Flag for debug prints
-        :return: A new merged image.
+        :return: A new hidden image.
         """
         # check is image path is valid
         if not os.path.exists(img):
@@ -86,16 +86,16 @@ class Steganography(object):
         # Load the image
         image = cv2.imread(img,cv2.IMREAD_UNCHANGED)
         
-        # Clone the original image to create a copy that will contain merged content
+        # Clone the original image to create a copy that will contain hidden content
         new_image = image.copy()
         
         # check if image contains 3 channels, else quit
         im_shape = image.shape
         if len(im_shape) != 3:
-          print("!! Unable to merge text as image does not have 3 channels !!")
+          print("!! Unable to hide text as image does not have 3 channels !!")
           return False,new_image
         elif im_shape[2] != 3:
-          print("!! Unable to merge text as image does not have 3 channels !!")
+          print("!! Unable to hide text as image does not have 3 channels !!")
           return False,new_image
         
         # Open the text file and read the content
@@ -108,7 +108,7 @@ class Steganography(object):
         # check if image size is sufficient to encode full text, else quit
         required_bytes = len(text_bin) * 3
         if required_bytes > im_shape[0] * im_shape[1] * 3:
-          print("!! Unable to merge full text as image does not have sufficient size !!")
+          print("!! Unable to hide full text as image does not have sufficient size !!")
           return False,new_image
         
         # initialize variables
@@ -120,7 +120,7 @@ class Steganography(object):
                 rgb1 = Steganography.__int_to_bin(image[i,j])
                 
                 if idx == len(text_bin):
-                  # if no more text left to merge, insert the end of text signature
+                  # if no more text left to hide, insert the end of text signature
                   bin_val = "{0:012b}".format(eotInd)
                   break_flag = True
                   if debug:
@@ -137,8 +137,8 @@ class Steganography(object):
                 # split into 3 channels of 4 bits each
                 rgb2 = (bin_val[:4],bin_val[4:8],bin_val[8:12])
 
-                # Merge the two pixels and convert it to a integer tuple
-                rgb = Steganography.__merge_rgb(rgb1, rgb2)
+                # hide the two pixels and convert it to a integer tuple
+                rgb = Steganography.__hide_rgb(rgb1, rgb2)
 
                 new_image[i,j] = Steganography.__bin_to_int(rgb)
                 
@@ -157,17 +157,17 @@ class Steganography(object):
 
         cv2.destroyAllWindows()
         cv2.imshow("Input Image", imutils.resize(image,width=displayWidth))
-        cv2.imshow("Merged Image", imutils.resize(new_image,width=displayWidth))
+        cv2.imshow("hidden Image", imutils.resize(new_image,width=displayWidth))
 
         return True,new_image
 
     @staticmethod
-    def unmerge(img,visualize,videofile,debug=False):
-        """Unmerge an image.
+    def unhide(img,visualize,videofile,debug=False):
+        """Unhide an image.
 
         :param img: The input image.
         :param debug: Flag for debug prints
-        :return: The unmerged/extracted text.
+        :return: The unhidden/extracted text.
         """
 
         # check is image path is valid
@@ -206,7 +206,6 @@ class Steganography(object):
           # fourcc = cv2.VideoWriter_fourcc(*'XVID')
           video_width = displayWidth
           video_height = int(0.5*displayWidth*im_shape[0]/im_shape[1])
-          print(displayWidth,video_height)
           # Open the video file
           print("Opening video file")
           # video_out = cv2.VideoWriter(videofile,fourcc,visFps, (im_shape[1],im_shape[0]))
@@ -269,7 +268,6 @@ class Steganography(object):
                         
                       cv2.imshow("Visualization",imutils.resize(stack_img,width=displayWidth))
                       video_out.write(cv2.resize(stack_img,(video_width,video_height)))
-                      print(stack_img.shape)
                       
                       key = cv2.waitKey(visHoldTime) & 0xFF
                       if key == ord('q') or key == 27 or ypos >= im_shape[0]:
@@ -305,9 +303,9 @@ class Steganography(object):
         cv2.imshow("Original Image", imutils.resize(image,width=displayWidth))
         try:
           text_data = bytes(text_bin).decode()
-          print("Unmerged Text:")
+          print("unhidden Text:")
           print(text_data)
-          cv2.imshow("Unmerged Text", imutils.resize(text_canvas,width=displayWidth))
+          cv2.imshow("unhidden Text", imutils.resize(text_canvas,width=displayWidth))
         except Exception as err:
           print("!! Decode Error:",err)
 
@@ -323,17 +321,17 @@ def cli():
 @click.option('--img', required=True, type=str, help='Image that will hide the text')
 @click.option('--text', required=True, type=str, help='Text that will be hidden')
 @click.option('--output', required=True, type=str, help='Output image')
-def merge(img, text, output):
+def hide(img, text, output):
     start_time = time.time()
-    ret_val,merged_image = Steganography.merge(img,text,debugMode)
+    ret_val,hidden_image = Steganography.hide(img,text,debugMode)
     end_time = time.time()
     
     if not ret_val:
-      print("!! Merge Failure !!")
+      print("!! hide Failure !!")
       return
-    print("Total time taken for merge: {:0.02f}s".format(end_time-start_time))
+    print("Total time taken for hide: {:0.02f}s".format(end_time-start_time))
     
-    cv2.imwrite(output,merged_image)
+    cv2.imwrite(output,hidden_image)
 
     cv2.waitKey(0)
     cv2.destroyAllWindows()
@@ -344,19 +342,19 @@ def merge(img, text, output):
 @click.option('--output', required=True, type=str, help='Output text')
 @click.option('--visualize', default=False, required=False, type=str, help='Option to visualize text extraction process')
 @click.option('--videofile', default='visualize.mp4', required=False, type=str, help='Filename to store visualization video')
-def unmerge(img, output, visualize,videofile):
+def unhide(img, output, visualize,videofile):
     start_time = time.time()
-    ret_val,unmerged_text = Steganography.unmerge(img,visualize,videofile,debugMode)
+    ret_val,unhidden_text = Steganography.unhide(img,visualize,videofile,debugMode)
     end_time = time.time()
     
     if not ret_val:
-      print("!! Unmerge Failure !!")
+      print("!! Unhide Failure !!")
       return
     
-    print("Total time taken for unmerge: {:0.02f}s".format(end_time-start_time))
+    print("Total time taken for unhide: {:0.02f}s".format(end_time-start_time))
     
     fp = open(output,'wb')
-    fp.write(unmerged_text)
+    fp.write(unhidden_text)
     fp.close()
 
     cv2.waitKey(0)
