@@ -100,7 +100,7 @@ class Steganography(object):
           return False,new_image
         
         # Open the text file and read the content
-        fp = open('res/text1.txt', 'rb')
+        fp = open(text, 'rb')
         text_bin = fp.read()
         fp.close()
 
