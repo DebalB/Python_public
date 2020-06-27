@@ -85,6 +85,7 @@ class Steganography(object):
 
         # Load the image
         image = cv2.imread(img,cv2.IMREAD_UNCHANGED)
+        image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
         
         # Clone the original image to create a copy that will contain hidden content
         new_image = image.copy()
@@ -177,6 +178,7 @@ class Steganography(object):
         
         # Load the image
         image = cv2.imread(img,cv2.IMREAD_UNCHANGED)
+        image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
         
         # Store the image size
         im_shape = image.shape
@@ -331,7 +333,8 @@ def hide(img, text, output):
       print("!! hide Failure !!")
       return
     print("Total time taken for hide: {:0.02f}s".format(end_time-start_time))
-    
+
+    hidden_image = cv2.cvtColor(hidden_image, cv2.COLOR_RGB2BGR)
     cv2.imwrite(output,hidden_image)
 
     cv2.waitKey(0)
