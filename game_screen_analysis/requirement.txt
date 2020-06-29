@@ -1,0 +1,177 @@
+Hi
+hi
+Q
+Do you do imagine identifying bot
+i am not sure I understand fully
+can you please clarify with an example?
+A bot can identify this imagine
+Q
+Let me auto buy this item
+give me some time, i will get back to you
+Q
+Ok ty
+Ok, I am back
+Q
+Csn be done?
+So from the video I could see that some game items need to be identified and bought
+Yes
+Q
+And price
+The exact item need to be identified given a sample image of same
+Identification of the items is not a problem
+How about price
+Q
+Of item
+But interface with the game is a problem
+Price of the items can also be identified
+Q
+I will be running on emulator
+By recognizing text
+Q
+Not exact price
+How does the emulator work
+But if anything below price can?
+Q
+Android amulator
+So it will run on a laptop/desktop
+Q
+Yes
+Ok. But it still needs to interface
+Q
+Can be done?
+I am not sure how
+I can implement some parts of it
+Q
+Will take how much to deliver
+But the whole implementation would need more components and APIs
+Cost can be anywhere around 500 usd
+Sure
+Q
+How long to deliver
+It may take 3-4 weeks
+Ok
+Q
+You need to run some test first?
+Yes sure
+I would need sample images
+And I may have some questions
+Which I will need you to clarify
+Q
+Yeahs sure what questions
+Once I get the samples I will list out my queries
+Mostly to determine the scope of work
+This is ok?
+Q
+Both color
+yes images are good
+now can you share me a sample from the game screen which shows these images
+or maybe I can use the video you already sent
+Q
+Like this
+yes
+so the first task i will attempt will be to match the gun images in the game screenshot
+if a match is found i will try and extract the price mentioned against the gun
+Not gun just the background color
+Q
+Yellow
+oh ok
+if a match is found i will try and extract the price mentioned against the gun yes
+If I put
+Below
+1billion
+Q
+Anything below this price will be purchase
+ok, understood
+https://youtu.be/bfusOgH0hdI
+This in Chinese
+Q
+You watch
+ok
+Roughly the idea I want
+Q
+Just that my bot need to identify imagine
+you mentioned to match only background color
+Q
+Yes
+but how about two guns with same background color
+like MAG ATK 1199 and 1112
+If both below 1b
+Q
+Purchase both
+ok
+only condition is that the background color of the gun should be yellow?
+Yes
+So this another item
+Match yellow
+Q
+Buy
+ok
+you do not want any guns with any other color background?
+So the bot will auto scan the market for this imagine and buy
+Any item with yellow background
+Q
+Not just guns
+oh ok
+understood
+Q
+Yellow green and red possible?
+yes
+as many as you want
+As you see they few job classes
+Warrior archer
+And under 1 drop down
+Got the items
+And select the rank unique item
+Q
+For yellow
+can you share some samples from other colors too
+Q
+the colors that you want to identify
+Q
+Green
+any other color? red?
+Q
+Red
+thanks
+How about the scanning speed of the imagine
+Q
+Can be adjust?
+that i am not sure
+But definitely can auto scan
+Q
+https://youtu.be/bfusOgH0hdI
+will try out a few tests and share my results
+Q
+You see video for some example
+yes I will check it out
+the part which I do not know is how to control the game to perform auto scan
+like how to click on different levels on the right
+and how to navigate the game menu etc
+for me that is the difficult part
+Q
+You think download game will help?
+is it an online game?
+Q
+Yes
+played in browser?
+Android and apple game
+But I will run on android emulator
+Q
+Which is on my desktop
+i am not sure if downloading the game will help
+the game needs to provide certain APIs and controls to the script
+which can be used to navigate th e game menu etc
+this part is not clear to me
+For this doesn't require hacking or anything right
+Q
+I don't have source code for this game
+i dont know exactly
+if there was any means to get the screenshots as images while the game is being played
+i could scan the images and extract the necessary info
+Q
+Ok how long you need test this
+i can tell you tomorrow i think
+Q
+Ok ty
+thanks
+K
