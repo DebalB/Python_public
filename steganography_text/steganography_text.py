@@ -17,7 +17,7 @@ displayWidth = (1024+128) # max width of image for display
 maxDebugBytes = 10 # max num of bytes to view in debug mode
 eotInd = 2730 # '101010101010' - 12 bit End-Of-Text indicator
 maxCharRange = 127 # max range of characters as per ASCII table
-debugMode = False # flag to view debug prints
+debugMode = True # flag to view debug prints
 visHoldTime = 1 # time in milisec to hold visualization per character
 visFps = 30 # frames per second for the captured visualization video
 visStack = 0 # direction (0-horizontal/1-vertical) for visualization stack
@@ -85,6 +85,7 @@ class Steganography(object):
 
         # Load the image
         image = cv2.imread(img,cv2.IMREAD_UNCHANGED)
+        image_org = image.copy()
         image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
         
         # Clone the original image to create a copy that will contain hidden content
@@ -157,7 +158,10 @@ class Steganography(object):
               break
 
         cv2.destroyAllWindows()
-        cv2.imshow("Input Image", imutils.resize(image,width=displayWidth))
+        
+        new_image = cv2.cvtColor(new_image, cv2.COLOR_RGB2BGR)
+        
+        cv2.imshow("Input Image", imutils.resize(image_org,width=displayWidth))
         cv2.imshow("hidden Image", imutils.resize(new_image,width=displayWidth))
 
         return True,new_image
@@ -178,6 +182,7 @@ class Steganography(object):
         
         # Load the image
         image = cv2.imread(img,cv2.IMREAD_UNCHANGED)
+        image_org = image.copy()
         image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
         
         # Store the image size
@@ -260,7 +265,7 @@ class Steganography(object):
                       
                       if idx%20 < 10:
                         # Add a blinking text effect
-                        cv2.putText(img_canvas, 'Scanning Image', (int(0.6* im_shape[1]//2),im_shape[0]//2),cv2.FONT_HERSHEY_SIMPLEX,3.0,(255, 0, 0), 10)
+                        cv2.putText(img_canvas, 'Scanning Image', (int(0.6* im_shape[1]//2),im_shape[0]//2),cv2.FONT_HERSHEY_SIMPLEX,2.0,(255, 0, 0), 10)
                       
                       if visStack == 0:
                         # stack_img = np.hstack((img_canvas,text_canvas))
@@ -303,7 +308,7 @@ class Steganography(object):
           
         cv2.destroyAllWindows()
         
-        cv2.imshow("Original Image", imutils.resize(image,width=displayWidth))
+        cv2.imshow("Original Image", imutils.resize(image_org,width=displayWidth))
         try:
           text_data = bytes(text_bin).decode()
           print("unhidden Text:")
@@ -334,7 +339,6 @@ def hide(img, text, output):
       return
     print("Total time taken for hide: {:0.02f}s".format(end_time-start_time))
 
-    hidden_image = cv2.cvtColor(hidden_image, cv2.COLOR_RGB2BGR)
     cv2.imwrite(output,hidden_image)
 
     cv2.waitKey(0)
