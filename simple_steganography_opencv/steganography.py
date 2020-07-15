@@ -60,28 +60,49 @@ class Steganography(object):
         :param img2: Second image
         :return: A new merged image.
         """
+        
+        new_image = []
+        pixel_map1 = []
+        pixel_map2 = []
+        
+        if type(img1) == 'numpy.ndarray':
+          im1_shape = img1.shape
+          new_image = img1.copy()
+          pixel_map1 = img1
+        else:
+          im1_shape = img1.get().shape
+          new_image = img1.get().copy()
+          pixel_map1 = img1.get()
+
+        if type(img2) == 'numpy.ndarray':
+          im2_shape = img2.shape
+          pixel_map2 = img2
+        else:
+          im2_shape = img2.get().shape
+          pixel_map2 = img2.get()
 
         # Check the images dimensions
-        if img2.shape[0] > img1.shape[0] or img2.shape[1] > img1.shape[1]:
+        # if img2.shape[0] > img1.shape[0] or img2.shape[1] > img1.shape[1]:
+        if im2_shape[0] > im1_shape[0] or im2_shape[1] > im1_shape[1]:
             raise ValueError('Image 2 should not be larger than Image 1!')
 
         # Get the pixel map of the two images
-        pixel_map1 = img1
-        pixel_map2 = img2
+        
+        
 
         # Create a new image that will be outputted
-        new_image = img1.copy()
+        # new_image = img1.copy()
         pixels_new = new_image
 
-        for i in range(img1.shape[0]):
-            for j in range(img1.shape[1]):
+        for i in range(im1_shape[0]):
+            for j in range(im1_shape[1]):
                 rgb1 = Steganography.__int_to_bin(pixel_map1[i, j])
 
                 # Use a black pixel as default
                 rgb2 = Steganography.__int_to_bin((0, 0, 0))
 
                 # Check if the pixel map position is valid for the second image
-                if i < img2.shape[0] and j < img2.shape[1]:
+                if i < im2_shape[0] and j < im2_shape[1]:
                     rgb2 = Steganography.__int_to_bin(pixel_map2[i, j])
 
                 # Merge the two pixels and convert it to a integer tuple
@@ -157,7 +178,8 @@ def cli():
 @click.option('--output', required=True, type=str, help='Output image')
 def merge(img1, img2, output):
     start_time = time.time()
-    merged_image = Steganography.merge(cv2.imread(img1), cv2.imread(img2))
+    # merged_image = Steganography.merge(cv2.imread(img1), cv2.imread(img2))
+    merged_image = Steganography.merge(cv2.UMat(cv2.imread(img1)), cv2.UMat(cv2.imread(img2)))
     end_time = time.time()
     print("Total time taken for merge={:0.02f}".format(end_time-start_time))
     cv2.imwrite(output,merged_image)
