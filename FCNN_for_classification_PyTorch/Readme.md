@@ -28,5 +28,5 @@ It is a very useful tool for debugging CNNs and to understand what the network â
 
 And it can also be used to obtain a fairly accurate bounding box of the predicted object.
 
-The file `ReceptiveFieldBackpropagation.py` uses the **Resnet18-FCNN** model from above to compute the receptive field of the pixel corresponding to the predicted class in the final CNN layer.
+The file `ReceptiveFieldBackpropagation.py` uses the **Resnet18-FCNN** model from above and the backpropagation algorithm to compute the receptive field of the pixel corresponding to the predicted class in the final CNN layer.
 
