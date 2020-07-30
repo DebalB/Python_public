@@ -1,5 +1,5 @@
 # Usage
-# Resnet18.py--input camel.jpg
+# Resnet18.py --input jay.jpg
 
 from torchvision import models
 from PIL import Image

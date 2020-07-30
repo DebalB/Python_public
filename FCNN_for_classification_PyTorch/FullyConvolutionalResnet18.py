@@ -1,5 +1,5 @@
 # Usage
-# FullyConvolutionalResnet18.py--input camel.jpg
+# FullyConvolutionalResnet18.py --input jay.jpg
 
 import torch
 import torch.nn as nn
@@ -22,7 +22,7 @@ ap.add_argument("-i","--input",required=True,help="path of the image to be class
 args = vars(ap.parse_args())
 image_path = args['input']
 
-displayWidth = 1024
+displayWidth = 800
 
 def showTopNPreds(pred,class_idx,labels,topN = 5):
   # flatten arrays
