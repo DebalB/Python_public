@@ -1,3 +1,6 @@
+# Usage
+# ReceptiveFieldBackpropagation.py--input camel.jpg
+
 import numpy as np
 import cv2
 from collections import namedtuple
@@ -7,12 +10,18 @@ import torch.nn as nn
 from torchvision import transforms
 from FullyConvolutionalResnet18 import FullyConvolutionalResnet18, showTopNPreds
 
+import argparse
 import imutils
+
+ap = argparse.ArgumentParser()
+ap.add_argument("-i","--input",required=True,help="path of the image to be classified")
+args = vars(ap.parse_args())
+image_path = args['input']
 
 Rect = namedtuple('Rect', 'x1 y1 x2 y2')
 
 displayWidth = 1024
-useGpu = True
+useGpu = False
 
 def backprop_receptive_field(image, predicted_class, scoremap, use_max_activation=True):
     model = FullyConvolutionalResnet18()
@@ -186,7 +195,7 @@ def run_resnet_inference(original_image):
 
 def main():
     # Read the image
-    image_path = 'camel.jpg'
+    # image_path = 'camel.jpg'
     image = cv2.imread(image_path)
 
     run_resnet_inference(image)

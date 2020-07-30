@@ -1,3 +1,6 @@
+# Usage
+# FullyConvolutionalResnet18.py--input camel.jpg
+
 import torch
 import torch.nn as nn
 from torchvision import models
@@ -12,6 +15,12 @@ from torchvision import transforms
 from torchsummary import summary
 
 import imutils
+import argparse
+
+ap = argparse.ArgumentParser()
+ap.add_argument("-i","--input",required=True,help="path of the image to be classified")
+args = vars(ap.parse_args())
+image_path = args['input']
 
 displayWidth = 1024
 
@@ -97,7 +106,7 @@ if __name__ == "__main__":
         labels = [line.strip() for line in f.readlines()]
 
     # Read image
-    original_image = cv2.imread('camel.jpg')
+    original_image = cv2.imread(image_path)
 
     # Convert original image to RGB format
     image = cv2.cvtColor(original_image, cv2.COLOR_BGR2RGB)
