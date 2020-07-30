@@ -1,5 +1,5 @@
 # Usage
-# ReceptiveFieldBackpropagation.py --input jay.jpg
+# ReceptiveFieldBackpropagation.py --input bird1.jpg
 
 import numpy as np
 import cv2
