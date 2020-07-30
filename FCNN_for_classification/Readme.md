@@ -12,9 +12,13 @@ However this approach leads to certain limitations as below which may cause sign
 
 In order to overcome above issues, Fully Convolutional Networks (FCNN) can be used.
 
-By definition, FCNNs architectures comprise only Convolutional layers i.e. there are no Fully Connected/Linear layers in these networks.
+By definition, FCNNs architectures comprise of only Convolutional layers i.e. there are no Fully Connected/Linear layers in these networks.
 
 Although it does add a few extra steps in extracting the predicted class, the benefits in accuracy far outweigh this slight inconvenience.
+
+In the file 'FullyConvolutionalResnet18.py', we take a Resnet18 PyTorch model pretrained on Imagenet dataset and replace the final Fully Connected/Linear layer with a Convolution layer and copy the corresponding weights.
+
+This gives us a Resnet18-FCNN model which can make predictions on images of arbitary dimensions without performing any resize or crop operation.
 
 ## Computing CNN Receptive Fields through backpropagation
 
@@ -23,4 +27,6 @@ Receptive field for a pixel in a feature map in a CNN represents all the pixels 
 It is a very useful tool for debugging CNNs and to understand what the network “saw” and analyzed to predict the final class.
 
 And it can also be used to obtain a fairly accurate bounding box of the predicted object.
+
+The file 'ReceptiveFieldBackpropagation.py' uses the Resnet18-FCNN model from above to compute the receptive field of the pixel corresponding to the predicted class in the final CNN layer.
 
