@@ -14,7 +14,7 @@ For example, consider the sample image below:
 
 ![Sample Image](bird5.jpg "bird5")
 
-The pretrained Resnet18 classifier in torchvision library gives by the following result for the above image:
+The pretrained **Resnet18** classifier in **torchvision** library gives by the following result for the above image:
 > **Top 5 predictions:**
 
 >> Predicted Class:[ptarmigan], Prob:[3.23%]
