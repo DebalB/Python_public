@@ -14,7 +14,7 @@ For example, consider the sample image below:
 
 ![Sample Image](bird5.jpg "bird5")
 
-The pretrained **Resnet18** classifier in **torchvision** library gives by the following result for the above image:
+In file `Resnet18.py` we use a pretrained **Resnet18** classifier from the **torchvision** library and we get the following predictions for the above image:
 > **Top 5 predictions:**
 
 >> Predicted Class:[ptarmigan], Prob:[3.23%]
@@ -27,6 +27,9 @@ The pretrained **Resnet18** classifier in **torchvision** library gives by the f
 
 >> Predicted Class:[vulture], Prob:[1.8%]
 
+#### Usage:
+
+> Resnet18.py --input bird5.jpg
 
 In order to overcome above mentioned issues, Fully Convolutional Networks (FCNN) can be used.
 
@@ -51,6 +54,10 @@ Using the FCN, we are able to improve the classification results as below:
 
 >> Label:[hay], Probability:[1.32%]
 
+#### Usage:
+
+> FullyConvolutionalResnet18.py --input bird5.jpg
+
 ## Computing CNN Receptive Fields through backpropagation
 
 Receptive field for a pixel in a feature map in a CNN represents all the pixels from the previous feature maps that affected its value.
@@ -60,6 +67,10 @@ It is a very useful tool for debugging CNNs and to understand what the network â
 And it can also be used to obtain a fairly accurate bounding box of the predicted object.
 
 The file `ReceptiveFieldBackpropagation.py` uses the **Resnet18-FCNN** model from above and the backpropagation algorithm to compute the receptive field of the pixel corresponding to the predicted class in the final CNN layer.
+
+#### Usage:
+
+> ReceptiveFieldBackpropagation.py --input bird5.jpg
 
 #### Receptive Field for Max Activated Pixel
 
