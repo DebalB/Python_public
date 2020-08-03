@@ -1,5 +1,5 @@
 # Usage
-# FullyConvolutionalResnet18.py --input bird1.jpg
+# FullyConvolutionalResnet18.py --input bird5.jpg
 
 import torch
 import torch.nn as nn

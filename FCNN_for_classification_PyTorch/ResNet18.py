@@ -1,5 +1,5 @@
 # Usage
-# Resnet18.py --input bird1.jpg
+# Resnet18.py --input bird5.jpg
 
 from torchvision import models
 from PIL import Image
