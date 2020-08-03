@@ -40,7 +40,7 @@ def showTopNPreds(pred,class_idx,labels,topN = 5):
   #   print("Label:[{}], Probability:[{:0.03}%]".format(labels[c.item()],100*p.item()))
     
   # top n unique predictions by prob
-  print("Top {} unique predictions:".format(topN))
+  print("Top {} predictions:".format(topN))
   classItems = []
   cnt = 0
   for p,c in pc_list:

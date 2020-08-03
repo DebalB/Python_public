@@ -17,6 +17,8 @@ ap.add_argument("-i","--input",required=True,help="path of the image to be class
 args = vars(ap.parse_args())
 image_path = args['input']
 
+topN = 5
+
 transform = transforms.Compose([            #[1]
 # transforms.Resize(256),                    #[2]
 # transforms.CenterCrop(224),                #[3]
@@ -45,5 +47,14 @@ resnet.eval()
 
 # Third, carry out model inference
 preds = resnet(batch_t)
+preds = torch.softmax(preds, dim=1)
 pred, class_idx = torch.max(preds, dim=1)
-print(labels[class_idx])
+
+p = preds.sort(dim = 1, descending=True)
+
+print('Top {} predictions:'.format(topN))
+for i in range(topN):
+  pred = p[0][0,i]
+  class_idx = p[1][0,i]
+  print('Predicted Class:[{}], Prob:[{:0.03}%]'.format(labels[class_idx],100*pred.item()))
+
