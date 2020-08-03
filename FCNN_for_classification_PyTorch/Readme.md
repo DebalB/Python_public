@@ -61,10 +61,10 @@ And it can also be used to obtain a fairly accurate bounding box of the predicte
 
 The file `ReceptiveFieldBackpropagation.py` uses the **Resnet18-FCNN** model from above and the backpropagation algorithm to compute the receptive field of the pixel corresponding to the predicted class in the final CNN layer.
 
-Receptive Field for Max Activated Pixel
+#### Receptive Field for Max Activated Pixel
 
 ![Receptive Field for Max Activated Pixel](max_activation.png "max_activation")
 
-Net Receptive Field for the Detected Class
+#### Net Receptive Field for the Detected Class
 
 ![Net Receptive Field for the Detected Class](receptive_field.png "receptive_field")
