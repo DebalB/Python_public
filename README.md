@@ -18,26 +18,26 @@
 
 ### Image Procesing and Animation
 
-- Calculating size of objects using OpenCV
+- [Calculating size of objects using OpenCV](https://github.com/DebalB/Python_public/tree/master/size-of-objects)
 
-- Feature matching in OpenCV using football example
+- [Feature matching in OpenCV using football example](https://github.com/DebalB/Python_public/tree/master/football_detection)
 
-- Funny Mirrors implementation using OpenCV
+- [Funny Mirrors implementation using OpenCV](https://github.com/DebalB/Python_public/tree/master/funny_mirrors)
 
-- Invisibility Cloak using OpenCV
+- [Invisibility Cloak using OpenCV](https://github.com/DebalB/Python_public/tree/master/invisibility_cloak)
 
-- Monster Game implementation using OpenCV
+- [Monster Game implementation using OpenCV](https://github.com/DebalB/Python_public/tree/master/monster_game)
 
-- Pattern Matching in OpenCV using T-shirt images
+- [Pattern Matching in OpenCV using T-shirt images](https://github.com/DebalB/Python_public/tree/master/tshirt_pattern_detection)
 
-- ROI extraction using computer game example
+- [ROI extraction using computer game example](https://github.com/DebalB/Python_public/tree/master/game_screen_analysis)
 
-- ROI extraction using pool table example
+- [ROI extraction using pool table example](https://github.com/DebalB/Python_public/tree/master/pool_table_detection)
 
-- Steganography using OpenCV
+- [Steganography using OpenCV](https://github.com/DebalB/Python_public/tree/master/simple_steganography_opencv)
 
-- Steganography with Text
+- [Steganography with Text](https://github.com/DebalB/Python_public/tree/master/steganography_text)
 
-- Video Stitching example using football game footage
+- [Video Stitching example using football game footage](https://github.com/DebalB/Python_public/tree/master/football_video_stitching)
 
-- VPython demo using 'Bouncing Ball in a Box'
+- [VPython demo using 'Bouncing Ball in a Box'](https://github.com/DebalB/Python_public/tree/master/ball_in_a_box)
