@@ -1,39 +1,39 @@
 ## Repository of Python projects for my public portfolio
 
-- Ball in a Box
-
-- Cab booking prediction
+- Calculating size of objects using OpenCV
 
 - Demo of Ensemble models
 
-- Face Detection
+- Face Detection with OpenCV
 
 - FCNN for Image Classification
 
-- Object Detection example using football game
+- Funny Mirrors implementation using OpenCV
 
-- Video Stitching example using football game
+- Invisibility Cloak using OpenCV
 
-- Funny Mirrors implementation
+- Mask-RCNN using OpenCV and pretrained Tensorflow model
+
+- Matterport Mask-RCNN demo
+
+- Monster Game implementation using OpenCV
+
+- Object Detection example using football game footage
+
+- Pattern Matching example using T-shirt images
 
 - ROI extraction using computer game example
 
-- Invisibility Cloak
-
-- Mask RCNN in Keras
-
-- Mask RCNN
-
-- Monster Game using image processing
+- ROI extraction using pool table example
 
 - Semantic Segmentation using OpenCV
 
-- ROI extraction using pool table example
+- Sklearn example using 'Cab booking prediction'
 
 - Steganography using OpenCV
 
-- Calculating size of objects using OpenCV
-
 - Steganography with Text
 
-- Pattern Matching example using T-shirt images
+- Video Stitching example using football game footage
+
+- VPython demo using 'Bouncing Ball in a Box'
