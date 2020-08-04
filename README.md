@@ -2,19 +2,19 @@
 
 ### Computer Vision and Machine Learning
 
-- Demo of Ensemble models
+- [Demo of Ensemble models](https://github.com/DebalB/Python_public/tree/master/ensemble_models)
 
-- Face Detection with OpenCV
+- [Face Detection with OpenCV](https://github.com/DebalB/Python_public/tree/master/face_detection)
 
-- FCNN for Image Classification
+- [Fully Convolutional Network for Image Classification](https://github.com/DebalB/Python_public/tree/master/FCNN_for_classification_PyTorch)
 
-- Mask-RCNN using OpenCV and pretrained Tensorflow model
+- [Mask-RCNN using OpenCV and pretrained Tensorflow model](https://github.com/DebalB/Python_public/tree/master/mask_rcnn)
 
-- Matterport Mask-RCNN demo
+- [Matterport Mask-RCNN demo](https://github.com/DebalB/Python_public/tree/master/keras_mask_rcnn)
 
-- Semantic Segmentation using OpenCV
+- [Semantic Segmentation using OpenCV](https://github.com/DebalB/Python_public/tree/master/opencv_semantic_segmentation)
 
-- Scikit-Learn example for predicting Cab bookings
+- [Scikit-Learn example for predicting Cab bookings](https://github.com/DebalB/Python_public/tree/master/cab_booking_prediction)
 
 ### Image Procesing and Animation
 
