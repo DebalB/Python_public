@@ -1,6 +1,6 @@
 ## Repository of Python projects for my public portfolio
 
-- Calculating size of objects using OpenCV
+### Computer Vision and Machine Learning
 
 - Demo of Ensemble models
 
@@ -8,27 +8,31 @@
 
 - FCNN for Image Classification
 
-- Funny Mirrors implementation using OpenCV
-
-- Invisibility Cloak using OpenCV
-
 - Mask-RCNN using OpenCV and pretrained Tensorflow model
 
 - Matterport Mask-RCNN demo
 
+- Semantic Segmentation using OpenCV
+
+- Scikit-Learn example for predicting Cab bookings
+
+### Image Procesing and Animation
+
+- Calculating size of objects using OpenCV
+
+- Feature matching in OpenCV using football example
+
+- Funny Mirrors implementation using OpenCV
+
+- Invisibility Cloak using OpenCV
+
 - Monster Game implementation using OpenCV
 
-- Object Detection example using football game footage
-
-- Pattern Matching example using T-shirt images
+- Pattern Matching in OpenCV using T-shirt images
 
 - ROI extraction using computer game example
 
 - ROI extraction using pool table example
-
-- Semantic Segmentation using OpenCV
-
-- Sklearn example using 'Cab booking prediction'
 
 - Steganography using OpenCV
 
