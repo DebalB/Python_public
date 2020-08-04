@@ -1,37 +1,39 @@
-## Welcome to GitHub Pages
+## Repository of Python projects for my public portfolio
 
-You can use the [editor on GitHub](https://github.com/DebalB/Python_public/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+- Ball in a Box
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+- Cab booking prediction
 
-### Markdown
+- Demo of Ensemble models
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+- Face Detection
 
-```markdown
-Syntax highlighted code block
+- FCNN for Image Classification
 
-# Header 1
-## Header 2
-### Header 3
+- Object Detection example using football game
 
-- Bulleted
-- List
+- Video Stitching example using football game
 
-1. Numbered
-2. List
+- Funny Mirrors implementation
 
-**Bold** and _Italic_ and `Code` text
+- ROI extraction using computer game example
 
-[Link](url) and ![Image](src)
-```
+- Invisibility Cloak
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+- Mask RCNN in Keras
 
-### Jekyll Themes
+- Mask RCNN
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/DebalB/Python_public/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+- Monster Game using image processing
 
-### Support or Contact
+- Semantic Segmentation using OpenCV
 
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+- ROI extraction using pool table example
+
+- Steganography using OpenCV
+
+- Calculating size of objects using OpenCV
+
+- Steganography with Text
+
+- Pattern Matching example using T-shirt images
