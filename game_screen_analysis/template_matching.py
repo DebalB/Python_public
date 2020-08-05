@@ -3,6 +3,7 @@
 #-i GameScreen2.jpg -t template1.jpg --detector frozen_east_text_detection.pb --padding 0.4 -c 70 -m 0.9
 #-i GameScreen2.jpg -t template2.jpg --detector frozen_east_text_detection.pb --padding 0.4 -c 70 -m 0.9
 #-i GameScreen1.jpg -t template2.jpg --detector frozen_east_text_detection.pb --padding 0.4 -c 70 -m 0.9
+#-i GameScreen2.jpg -t template3.jpg --detector frozen_east_text_detection.pb --padding 0.4 -c 70 -m 0.9
 
 import cv2
 import imutils
