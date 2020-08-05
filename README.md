@@ -12,6 +12,8 @@
 
 - [Matterport Mask-RCNN demo](https://github.com/DebalB/Python_public/tree/master/keras_mask_rcnn)
 
+- [ROI extraction and Text Decoding](https://github.com/DebalB/Python_public/tree/master/game_screen_analysis)
+
 - [Semantic Segmentation using OpenCV](https://github.com/DebalB/Python_public/tree/master/opencv_semantic_segmentation)
 
 - [Scikit-Learn example for predicting Cab bookings](https://github.com/DebalB/Python_public/tree/master/cab_booking_prediction)
@@ -26,11 +28,12 @@
 
 - [Invisibility Cloak using OpenCV](https://github.com/DebalB/Python_public/tree/master/invisibility_cloak)
 
+- [Image content extraction](https://github.com/DebalB/Python_public/tree/master/extract_image_content)
+
 - [Monster Game implementation using OpenCV](https://github.com/DebalB/Python_public/tree/master/monster_game)
 
 - [Pattern Matching in OpenCV using T-shirt images](https://github.com/DebalB/Python_public/tree/master/tshirt_pattern_detection)
 
-- [ROI extraction using computer game example](https://github.com/DebalB/Python_public/tree/master/game_screen_analysis)
 
 - [ROI extraction using pool table example](https://github.com/DebalB/Python_public/tree/master/pool_table_detection)
 
