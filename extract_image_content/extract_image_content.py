@@ -6,7 +6,7 @@ Created on Thu Aug 15 16:54:21 2019
 """
 
 # USAGE
-# python extract_image_portion.py --image Image1.png
+# python extract_image_content.py --image Image1.png
 
 ## Image processing example
 import cv2
