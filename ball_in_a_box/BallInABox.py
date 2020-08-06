@@ -7,7 +7,7 @@ Created on Tue Jul 28 15:33:56 2020
 
 from vpython import *
 
-showTrail = True
+showTrail = False
 autoScale = True
 showArrow = False
 
