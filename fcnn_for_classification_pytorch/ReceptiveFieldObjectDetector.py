@@ -22,7 +22,8 @@ Rect = namedtuple('Rect', 'x1 y1 x2 y2')
 displayWidth = 1024
 # useGpu = False
 useGpu = True
-predThresh = 0.10
+predThresh = 0.20
+useMaxActivations = False
 
 def view_detected_objects(original_image,image_tensor,preds,categories):
   
@@ -30,8 +31,7 @@ def view_detected_objects(original_image,image_tensor,preds,categories):
   
   # preds = preds.squeeze()
   preds_max,labels_max = torch.max(preds,dim= 1)
-  
-  print("preds_max shape:",preds_max.shape)
+  # print("preds_max shape:",preds_max.shape)
   
   numrows = preds_max[0].shape[0]
   numcols = preds_max[0].shape[1]
@@ -44,19 +44,20 @@ def view_detected_objects(original_image,image_tensor,preds,categories):
       
       if pmax > predThresh:
         cnt+=1
-        print('Pred-{},Category:[{}],Prob:[{:.03}%], Value[{}]'.format(cnt,categories[class_val],100*pmax,class_val))
+        print('[{}]Class:[{}], Prob:[{:.03}%], Value:[{}]'.format(cnt,categories[class_val].split(',')[0],100*pmax,class_val))
       
         class_val = torch.tensor([class_val])
         score_map = preds[0, class_val, :, :].cpu()
         max_idx = (rowidx,colidx)
         
-        obj_detected = backprop_receptive_field(image_tensor,scoremap=score_map, predicted_class=class_val,use_max_activation=False,max_loc=max_idx)
+        obj_detected = backprop_receptive_field(image_tensor,scoremap=score_map, predicted_class=class_val,use_max_activation=useMaxActivations,max_loc=max_idx)
         
         obj_detected = normalize(obj_detected)
         
-        obj_img = (obj_detected*255.0).astype('uint8')
-        cv2.imshow("obj_detected",imutils.resize(obj_detected,width=displayWidth))
-        cv2.waitKey(0)
+        # visualize interim detection
+        # obj_img = (obj_detected*255.0).astype('uint8')
+        # cv2.imshow("obj_detected",imutils.resize(obj_detected,width=displayWidth))
+        # cv2.waitKey(0)
         
         rects = find_rect(obj_detected)
         for rect in rects:
@@ -64,51 +65,21 @@ def view_detected_objects(original_image,image_tensor,preds,categories):
           L = labels.get(class_val, [])
           L.append((box, pmax))
           labels[class_val] = L
-        
-
-  # pred_sorted,idx_sorted = torch.sort(torch.flatten(preds_max[0]),descending=True)
-  # label_vals = torch.flatten(labels_max[0])[idx_sorted]
-  
-  # for cnt in range(len(pred_sorted)):
-  #   pmax = pred_sorted[cnt]
-  #   class_val = label_vals[cnt]
-    
-  #   if pmax > predThresh:
-  #     print('Pred-{},Category:[{}],Prob:[{:.03}%], Value[{}]'.format(cnt+1,categories[class_val],100*pmax,class_val))
-  #   else:
-  #     break
-    
-  #   class_val = torch.tensor([class_val])
-  #   score_map = preds[0, class_val, :, :].cpu()
-    
-  #   obj_detected = backprop_receptive_field(image_tensor,scoremap=score_map, predicted_class=class_val,use_max_activation=True)
-    
-  #   obj_detected = normalize(obj_detected)
-    
-  #   obj_img = (obj_detected*255.0).astype('uint8')
-  #   cv2.imshow("obj_detected",imutils.resize(obj_detected,width=displayWidth))
-  #   cv2.waitKey(0)
-    
-  #   rect = find_rect(obj_detected)
-  #   if rect is not None:
-  #     box = (rect.x1, rect.y1, rect.x2, rect.y2)
-  #     L = labels.get(class_val, [])
-  #     L.append((box, pmax))
-  #     labels[class_val] = L
   
   clone = original_image.copy()
   
   for label in labels.keys():
+    color = np.random.randint(0,100,size=(3))
     boxes = np.array([p[0] for p in labels[label]])
     proba = np.array([p[1] for p in labels[label]])
     boxes = imutils.object_detection.non_max_suppression(boxes, proba)
     
     for (startX, startY, endX, endY) in boxes:
       # draw the bounding box and label on the image
-      cv2.rectangle(clone, (startX, startY), (endX, endY), (0, 255, 0), 2)
+      cv2.rectangle(clone, (startX, startY), (endX, endY), [int(color[0]),int(color[1]),int(color[2])], 2)
       y = startY - 10 if startY - 10 > 10 else startY + 10
       text = categories[label].split(',')[0]
-      cv2.putText(clone, text, (startX, y), cv2.FONT_HERSHEY_SIMPLEX, 1.0, (0, 0, 0), 2)
+      cv2.putText(clone, text, (startX, y), cv2.FONT_HERSHEY_SIMPLEX, 1.0, [int(color[0]),int(color[1]),int(color[2])], 2)
 
   # show the output after apply non-maxima suppression
   cv2.imshow("Objects Detected", imutils.resize(clone,width=displayWidth))
@@ -145,14 +116,14 @@ def backprop_receptive_field(image, predicted_class, scoremap, use_max_activatio
     if not use_max_activation:
       grad[0, predicted_class] = scoremap
     elif max_loc != None:
-      print('Coords provided for max activation:', max_loc[0], max_loc[1])
+      # print('Coords provided for max activation:', max_loc[0], max_loc[1])
 
       grad[0, 0, max_loc[0], max_loc[1]] = 1
     else:
       scoremap_max_row_values, max_row_id = torch.max(scoremap, dim=1)
       _, max_col_id = torch.max(scoremap_max_row_values, dim=1)
       max_row_id = max_row_id[0, max_col_id]
-      print('Coords of the max activation:', max_row_id.item(), max_col_id.item())
+      # print('Coords of the max activation:', max_row_id.item(), max_col_id.item())
 
       grad[0, 0, max_row_id, max_col_id] = 1
     
