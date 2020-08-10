@@ -16,7 +16,7 @@ For example, consider the sample image below:
 
 In file `Resnet18.py` we use a pretrained **Resnet18** classifier from the **torchvision** library and we get the following predictions for the above image:
 > **Top 5 predictions:**
-
+>
 >> Predicted Class:[ptarmigan], Prob:[3.23%]
 >>
 >> Predicted Class:[hen], Prob:[2.87%]
@@ -43,7 +43,7 @@ This gives us a **Resnet18-FCNN** model which can make predictions on images of 
 
 Using the FCN, we are able to improve the classification results as below:
 > **Top 5 predictions:**
-
+>
 >> Label:[hen], Probability:[58.9%]
 >>
 >> Label:[mountain tent], Probability:[39.9%]
