@@ -18,13 +18,13 @@ In file `Resnet18.py` we use a pretrained **Resnet18** classifier from the **tor
 > **Top 5 predictions:**
 
 >> Predicted Class:[ptarmigan], Prob:[3.23%]
-
+>>
 >> Predicted Class:[hen], Prob:[2.87%]
-
+>>
 >> Predicted Class:[partridge], Prob:[2.5%]
-
+>>
 >> Predicted Class:[crane], Prob:[2.23%]
-
+>>
 >> Predicted Class:[vulture], Prob:[1.8%]
 
 #### Usage:
@@ -45,13 +45,13 @@ Using the FCN, we are able to improve the classification results as below:
 > **Top 5 predictions:**
 
 >> Label:[hen], Probability:[58.9%]
-
+>>
 >> Label:[mountain tent], Probability:[39.9%]
-
+>>
 >> Label:[partridge], Probability:[13.8%]
-
+>>
 >> Label:[rugby ball], Probability:[2.92%]
-
+>>
 >> Label:[hay], Probability:[1.32%]
 
 #### Usage:
