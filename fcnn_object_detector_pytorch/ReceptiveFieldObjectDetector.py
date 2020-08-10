@@ -10,6 +10,7 @@ import torch.nn as nn
 from torchvision import transforms
 from FullyConvolutionalResnet18 import FullyConvolutionalResnet18, showTopNPreds
 import argparse
+from imutils import object_detection
 import imutils
 
 ap = argparse.ArgumentParser()
@@ -19,13 +20,15 @@ image_path = args['input']
 
 Rect = namedtuple('Rect', 'x1 y1 x2 y2')
 
+saveModel = False
+saveDetection = False
 displayWidth = 1024
 # useGpu = False
 useGpu = True
 predThresh = 0.20
 useMaxActivations = False
 
-def view_detected_objects(original_image,image_tensor,preds,categories):
+def detect_objects(original_image,image_tensor,preds,categories):
   
   labels = {}
   
@@ -72,7 +75,7 @@ def view_detected_objects(original_image,image_tensor,preds,categories):
     color = np.random.randint(0,100,size=(3))
     boxes = np.array([p[0] for p in labels[label]])
     proba = np.array([p[1] for p in labels[label]])
-    boxes = imutils.object_detection.non_max_suppression(boxes, proba)
+    boxes = object_detection.non_max_suppression(boxes, proba)
     
     for (startX, startY, endX, endY) in boxes:
       # draw the bounding box and label on the image
@@ -83,6 +86,9 @@ def view_detected_objects(original_image,image_tensor,preds,categories):
 
   # show the output after apply non-maxima suppression
   cv2.imshow("Objects Detected", imutils.resize(clone,width=displayWidth))
+  
+  if saveDetection == True:
+    cv2.imwrite('detection_result.png',clone)
     # cv2.waitKey(0)
 
 def backprop_receptive_field(image, predicted_class, scoremap, use_max_activation=True,max_loc=None):
@@ -204,6 +210,9 @@ def run_resnet_inference(original_image):
     # Load modified resnet18 model with pretrained ImageNet weights
     model = FullyConvolutionalResnet18(pretrained=True).eval()
     
+    if saveModel == True:
+      torch.save(model,'modelfile.pt')
+    
     if useGpu == True and torch.cuda.is_available() == True:
       # print('moving to GPU {model,image}')
       model = model.cuda()
@@ -253,12 +262,12 @@ def run_resnet_inference(original_image):
     
     # cv2.imshow("receptive_field_net_prediction", imutils.resize(visualize_activations(original_image, receptive_field_net_pred_map, show_bounding_rect=True),width=displayWidth))
     
-    # view objects detected
-    view_detected_objects(original_image,image,preds,labels)
+    # detect objects and visualize detections
+    detect_objects(original_image,image,preds,labels)
     
     cv2.waitKey(0)
     cv2.destroyAllWindows()
-
+    
 
 def main():
     # Read the image
