@@ -22,6 +22,6 @@ Sample results
 
 ![Result1](res/detection_result1.png "result1")
 
-![Result1](res/detection_result3.png "result1")
+![Result2](res/detection_result3.png "result2")
 
-![Result1](res/detection_result5.png "result1")
+![Result3](res/detection_result5.png "result3")
