@@ -1,3 +1,10 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Tue Aug 11 14:06:53 2020
+
+@author: DEBAL
+"""
+
 # Usage
 # ReceptiveFieldObjectDetector.py --input res/bird5.jpg
 # ReceptiveFieldObjectDetector.py --input res/camel.jpg
@@ -6,13 +13,12 @@ import numpy as np
 import cv2
 import os
 import torch
-import torch.nn as nn
 from torchvision import transforms
 from FullyConvolutionalResnet18 import FullyConvolutionalResnet18
 import argparse
 from imutils import object_detection
 import imutils
-from utility_functions import find_rects, normalize
+from utility_functions import find_rects, normalize, backprop_receptive_field
 
 ap = argparse.ArgumentParser()
 ap.add_argument("-i","--input",required=True,help="path of the image to be classified")
@@ -51,7 +57,7 @@ def detect_objects(original_image,image_tensor,preds,categories):
         score_map = preds[0, class_val, :, :].cpu()
         max_idx = (rowidx,colidx)
         
-        obj_detected = backprop_receptive_field(image_tensor,scoremap=score_map, predicted_class=class_val,use_max_activation=useMaxActivations,max_loc=max_idx)
+        obj_detected = backprop_receptive_field(image_tensor,scoremap=score_map, predicted_class=class_val,use_max_activation=useMaxActivations,max_loc=max_idx,useGpu=useGpu)
         
         obj_detected = normalize(obj_detected)
         
@@ -88,53 +94,6 @@ def detect_objects(original_image,image_tensor,preds,categories):
   if saveDetection == True:
     cv2.imwrite('detection_result.png',clone)
     # cv2.waitKey(0)
-
-def backprop_receptive_field(image, predicted_class, scoremap, use_max_activation=True,max_loc=None):
-    model = FullyConvolutionalResnet18()
-    
-    model = model.train()
-    for module in model.modules():
-        try:
-            nn.init.constant_(module.weight, 0.05) # inference overflows with ones
-            nn.init.zeros_(module.bias)
-            nn.init.zeros_(module.running_mean)
-            nn.init.ones_(module.running_var)
-        except:
-            pass
-
-        if isinstance(module, torch.nn.modules.BatchNorm2d):
-            module.eval()
-
-    input = torch.ones_like(image, requires_grad=True)
-    
-    if useGpu == True and torch.cuda.is_available() == True:
-      # print('moving to GPU {model, input, scoremap, predicted_class}')
-      model = model.cuda()
-      input = input.cuda()
-      scoremap = scoremap.cuda()
-      predicted_class = predicted_class.cuda()
-
-    out = model(input)
-    grad = torch.zeros_like(out, requires_grad=True)
-
-    if not use_max_activation:
-      grad[0, predicted_class] = scoremap
-    elif max_loc != None:
-      # print('Coords provided for max activation:', max_loc[0], max_loc[1])
-      grad[0, 0, max_loc[0], max_loc[1]] = 1
-    else:
-      scoremap_max_row_values, max_row_id = torch.max(scoremap, dim=1)
-      _, max_col_id = torch.max(scoremap_max_row_values, dim=1)
-      max_row_id = max_row_id[0, max_col_id]
-      # print('Coords of the max activation:', max_row_id.item(), max_col_id.item())
-      grad[0, 0, max_row_id, max_col_id] = 1
-    
-    out.backward(gradient=grad)
-    gradient_of_input = input.grad[0, 0].cpu().data.numpy()
-    # gradient_of_input = gradient_of_input / np.amax(gradient_of_input)
-
-    return gradient_of_input
-
 
 def run_resnet_inference(original_image):
     # Read ImageNet class id to name mapping

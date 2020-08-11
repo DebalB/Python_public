@@ -1,3 +1,7 @@
+"""
+Code based on "https://github.com/spmallick/learnopencv/tree/master/PyTorch-Receptive-Field-With-Backprop"
+"""
+
 # Usage
 # FullyConvolutionalResnet18.py --input bird5.jpg
 
