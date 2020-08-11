@@ -8,6 +8,7 @@ Created on Tue Aug 11 14:06:53 2020
 # Usage
 # ReceptiveFieldObjectDetector.py --input res/bird5.jpg
 # ReceptiveFieldObjectDetector.py --input res/camel.jpg
+# ReceptiveFieldObjectDetector.py --input res/kitchen.jpg
 
 import numpy as np
 import cv2
@@ -28,8 +29,9 @@ image_path = args['input']
 useGpu = True
 saveModel = False
 saveDetection = False
-useMaxActivations = True
+useMaxActivations = False
 displayWidth = 1024
+displayHeight = 600
 predThresh = 0.20
 
 def detect_objects(original_image,image_tensor,preds,categories):
@@ -74,6 +76,7 @@ def detect_objects(original_image,image_tensor,preds,categories):
           labels[class_val] = L
   
   clone = original_image.copy()
+  H,W = clone.shape[:2]
   
   for label in labels.keys():
     color = np.random.randint(0,100,size=(3))
@@ -88,8 +91,11 @@ def detect_objects(original_image,image_tensor,preds,categories):
       text = categories[label].split(',')[0]
       cv2.putText(clone, text, (startX, y), cv2.FONT_HERSHEY_SIMPLEX, 1.0, [int(color[0]),int(color[1]),int(color[2])], 2)
 
-  # show the output after apply non-maxima suppression
-  cv2.imshow("Objects Detected", imutils.resize(clone,width=displayWidth))
+  # scale and display the output after applying non-maxima suppression
+  if W > H:
+    cv2.imshow("Objects Detected", imutils.resize(clone,width=displayWidth))
+  else:
+    cv2.imshow("Objects Detected", imutils.resize(clone,height=displayHeight))
   
   if saveDetection == True:
     cv2.imwrite('detection_result.png',clone)
