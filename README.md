@@ -1,4 +1,4 @@
-## Repository of Python projects for my public portfolio
+## Repository of Python projects for portfolio
 
 ### Computer Vision and Machine Learning
 
