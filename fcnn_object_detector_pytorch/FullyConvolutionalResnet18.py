@@ -188,8 +188,4 @@ if __name__ == "__main__":
         cv2.imshow("activations_and_bbox", imutils.resize(masked_image, width=displayWidth))
         cv2.waitKey(0)
         cv2.destroyAllWindows()
-        
-        
-        
-
 
