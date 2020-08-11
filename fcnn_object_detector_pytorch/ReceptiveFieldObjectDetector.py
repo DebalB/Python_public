@@ -55,10 +55,10 @@ def detect_objects(original_image,image_tensor,preds,categories):
         
         obj_detected = normalize(obj_detected)
         
-        # visualize interim detection
-        obj_img = (obj_detected*255.0).astype('uint8')
-        cv2.imshow("obj_detected",imutils.resize(obj_img,width=displayWidth))
-        cv2.waitKey(0)
+        # # visualize interim detection
+        # obj_img = (obj_detected*255.0).astype('uint8')
+        # cv2.imshow("obj_detected",imutils.resize(obj_img,width=displayWidth))
+        # cv2.waitKey(0)
         
         rects = find_rects(obj_detected)
         for rect in rects:
