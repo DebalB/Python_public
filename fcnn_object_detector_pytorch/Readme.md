@@ -15,10 +15,10 @@ Specifically, the model used is a variant of Resnet-18, in which the final (and 
 
 Refer the corresponding [blog post](tbd) for a detailed explanation.
 
-Usage:
+### Usage:
 > python ReceptiveFieldObjectDetector.py --input res/kitchen.jpg
 
-Sample results
+### Sample results:
 
 ![Result1](res/detection_result1.png "result1")
 
