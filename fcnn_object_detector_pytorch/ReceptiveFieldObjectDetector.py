@@ -99,7 +99,7 @@ def detect_objects(original_image,image_tensor,preds,categories):
   
   if saveDetection == True:
     cv2.imwrite('detection_result.png',clone)
-    # cv2.waitKey(0)
+
 
 def run_resnet_inference(original_image):
     # Read ImageNet class id to name mapping
