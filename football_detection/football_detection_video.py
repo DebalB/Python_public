@@ -1,5 +1,5 @@
 # USAGE
-# --first images/objects/ --video ../videos/match1R.mp4
+# --first images/objects/ --video ../videos/match1R_short.mp4
 
 # -*- coding: utf-8 -*-
 """
