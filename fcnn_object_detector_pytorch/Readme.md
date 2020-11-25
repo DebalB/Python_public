@@ -1,6 +1,6 @@
 # Using FCNN Receptive Fields for Object Detection
 
-This implementation dscribes an approach to create an **Object Detection** model from a pretrained **Image Classification** model in PyTorch.
+This implementation describes an approach to create an **Object Detection** model from a pretrained **Image Classification** model in PyTorch.
 
 The idea and the implementation presented in this post are built using concepts of **CNN Receptive Fields, Backpropagation and Fully Convolutional Networks**.
 
