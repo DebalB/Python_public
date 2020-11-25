@@ -13,7 +13,7 @@ For this exercise, I have used a slightly modified version of the pretrained Res
 
 Specifically, the model used is a variant of Resnet-18, in which the final (and only) Fully Connected (or Linear) layer of the model is replaced by a 2D Convolution layer, thus converting the model into a Fully Convolutional Neural Network (FCNN).
 
-Refer the corresponding [blog post](tbd) for a detailed explanation.
+Refer the corresponding [blog post](https://towardsdatascience.com/using-fcnn-receptive-fields-for-object-detection-8101d7acecff) for a detailed explanation.
 
 ### Usage:
 > python ReceptiveFieldObjectDetector.py --input res/kitchen.jpg
