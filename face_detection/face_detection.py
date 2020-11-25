@@ -1,5 +1,5 @@
 # USAGE
-# python face_detection.py --face-cascade cascades/haarcascade_frontalface_default.xml --output output/faces/adrian.txt --input-img avatars/potter.jpg
+# python face_detection.py --face-cascade cascades/haarcascade_frontalface_default.xml --output output/faces/face_data.txt --input-img avatars/potter.jpg
 
 # import the necessary packages
 from __future__ import print_function
@@ -8,6 +8,7 @@ from imutils import encodings
 import argparse
 import imutils
 import cv2
+import os
 
 # construct the argument parse and parse command line arguments
 ap = argparse.ArgumentParser()
@@ -22,6 +23,7 @@ args = vars(ap.parse_args())
 fd = FaceDetector(args["face_cascade"])
 captureMode = False
 color = (0, 255, 0)
+saveImages = True
 
 img = cv2.imread(args["input_img"])
 img = imutils.resize(img, width=500)
@@ -51,6 +53,7 @@ if key == ord("q"):
 # grab a reference to the webcam and open the output file for writing
 camera = cv2.VideoCapture(0)
 f = open(args["output"], args["write_mode"])
+dirname = os.path.dirname(args["output"])
 total = 0
 
 # loop over the frames of the video
@@ -87,6 +90,8 @@ while True:
 		cv2.imshow("Frame_new", frame_copy)
 
 	# show the frame and record if the user presses a key
+	if saveImages:
+		cv2.imwrite(os.path.join(dirname,str(total)+'.png'),frame)
 	cv2.imshow("Frame", frame)
 	key = cv2.waitKey(1) & 0xFF
 
