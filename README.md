@@ -6,7 +6,7 @@
 
 - [Face Detection with OpenCV](https://github.com/DebalB/Python_public/tree/master/face_detection)
 
-- [Fully Convolutional Network for Image Classification](https://github.com/DebalB/Python_public/tree/master/FCNN_for_classification_PyTorch)
+- [Fully Convolutional Network for Image Classification](https://github.com/DebalB/Python_public/tree/master/fcnn_for_classification_pytorch)
 
 - [Using FCNN Receptive Fields for Object Detection](https://github.com/DebalB/Python_public/tree/master/fcnn_object_detector_pytorch)
 
