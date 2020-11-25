@@ -20,7 +20,7 @@
 
 - [Scikit-Learn example for predicting Cab bookings](https://github.com/DebalB/Python_public/tree/master/cab_booking_prediction)
 
-### Image Procesing and Animation
+### Image Processing and Animation
 
 - [Calculating size of objects using OpenCV](https://github.com/DebalB/Python_public/tree/master/size-of-objects)
 
