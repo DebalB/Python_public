@@ -1,5 +1,5 @@
 # USAGE
-# python maskrcnn_predict.py --weights mask_rcnn_coco.h5 --labels coco_labels.txt --image images/30th_birthday.jpg
+# python maskrcnn_predict.py --weights mask_rcnn_coco.h5 --labels coco_labels.txt --image images/sample1.jpg
 
 # import the necessary packages
 from mrcnn.config import Config
