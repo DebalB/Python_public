@@ -8,6 +8,9 @@ Final goal is to identify and mark the locations of all 4 table inner edges and 
 
 For a detailed explanation, refer to the [blog post](https://medium.com/object-extraction-from-images-using-opencv-python/extracting-circles-and-long-edges-from-images-using-opencv-and-python-236218f0fee4).
 
-Usage:
+### Usage:
 
 > python pool_table_detection_final_v2.py --image images/image4.png
+
+### Sample Result
+![Result1](imahges/image3_processed.png "result1")
