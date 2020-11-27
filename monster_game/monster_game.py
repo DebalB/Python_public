@@ -5,7 +5,7 @@ Created on Sun May 10 15:04:37 2020
 @author: DEBAL
 """
 # Usage:
-# monster_game.py --images "./monsters/"
+# monster_game.py --images ./monsters/
 
 import cv2
 import argparse
