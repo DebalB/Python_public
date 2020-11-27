@@ -13,4 +13,4 @@ For a detailed explanation, refer to the [blog post](https://medium.com/object-e
 > python pool_table_detection_final_v2.py --image images/image4.png
 
 ### Sample Result
-![Result1](imahges/image3_processed.png "result1")
+![Result1](images/image3_processed.png "result1")
