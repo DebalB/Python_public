@@ -1,14 +1,7 @@
 # -*- coding: utf-8 -*-
 # Usage:
-#--image images/TrocknerBilder/temp1.png --pattern images/TrocknerDruckdaten/32BZ5BXY.png
-#--image images/TrocknerBilder/temp2.png --pattern images/TrocknerDruckdaten/XT2974JT.png
-#--image images/TrocknerBilder/temp3.png --pattern images/TrocknerDruckdaten/M83QYD29.png
-#--image images/TrocknerBilder/temp4.png --pattern images/TrocknerDruckdaten/4VY1YHI4.png
-#--image images/TrocknerBilder/temp1.png --pattern images/TrocknerDruckdaten/GREMSV67.png
-#--image images/TrocknerBilder/temp1.png --pattern images/TrocknerDruckdaten/XT2974JT.png
-#--image images/TrocknerBilder/temp3.png --pattern images/TrocknerDruckdaten/4VY1YHI4.png
-#--image images/TrocknerBilder/temp1.png --pattern images/TrocknerDruckdaten
-#--image images/TrocknerBilder --pattern images/TrocknerDruckdaten
+# python test.py --image images/DSC04886.JPG --pattern images/4VY1YHI4.png
+
 """
 Created on Mon Nov 11 16:41:41 2019
 
@@ -113,88 +106,6 @@ except:
   print('War: Exception in arg parse, using default values')
   args = dict()
   
-  # Positive matches
-  
-#  args['image'] = 'images/TrocknerBilder/temp1.png'
-#  args['pattern'] = 'images/TrocknerDruckdaten/32BZ5BXY.png'
-  
-#  args['image'] = 'images/TrocknerBilder/temp2.png'
-#  args['pattern'] = 'images/TrocknerDruckdaten/XT2974JT.png'
-  
-#  args['image'] = 'images/TrocknerBilder/temp4.png'
-#  args['pattern'] = 'images/TrocknerDruckdaten/4VY1YHI4.png'
-  
-#  args['image'] = 'images/TrocknerBilder/temp3.png'
-#  args['pattern'] = 'images/TrocknerDruckdaten/M83QYD29.png'
-  
-#  args['image'] = 'images/TrocknerBilder/DSC04886.jpg'
-#  args['pattern'] = 'images/TrocknerDruckdaten/4VY1YHI4.png'
-  
-#  args['image'] = 'images/TrocknerBilder/DSC04886.jpg'
-#  args['pattern'] = 'images/TrocknerDruckdaten/32BZ5BXY.png'
-  
-#  args['image'] = 'images/TrocknerBilder/DSC04889.jpg'
-#  args['pattern'] = 'images/TrocknerDruckdaten/32BZ5BXY.png'
-  
-#  args['image'] = 'images/TrocknerBilder/DSC04895.jpg'
-#  args['pattern'] = 'images/TrocknerDruckdaten/32BZ5BXY.png'
-  
-#  args['image'] = 'images/TrocknerBilder/DSC04887.jpg'
-#  args['pattern'] = 'images/TrocknerDruckdaten/32BZ5BXY.png'
-  
-#  args['image'] = 'images/TrocknerBilder/DSC04893.jpg'
-#  args['pattern'] = 'images/TrocknerDruckdaten/32BZ5BXY.png'
-  
-#  args['image'] = 'images/TrocknerBilder/DSC04888.jpg'
-#  args['pattern'] = 'images/TrocknerDruckdaten/32BZ5BXY.png'
-  
-#  args['image'] = 'images/TrocknerBilder/DSC04892.jpg'
-#  args['pattern'] = 'images/TrocknerDruckdaten/32BZ5BXY.png'
-  
-#  args['image'] = 'images/TrocknerBilder/DSC04890.jpg'
-#  args['pattern'] = 'images/TrocknerDruckdaten/32BZ5BXY.png'
-  
-#  args['image'] = 'images/TrocknerBilder/DSC04896.jpg'
-#  args['pattern'] = 'images/TrocknerDruckdaten/32BZ5BXY.png'
-  
-#  args['image'] = 'images/TrocknerBilder/DSC04894.jpg'
-#  args['pattern'] = 'images/TrocknerDruckdaten/32BZ5BXY.png'
-  
-#  args['image'] = 'images/TrocknerBilder/DSC04888.jpg'
-#  args['pattern'] = 'images/TrocknerDruckdaten/4VY1YHI4.png'
-
-#  args['image'] = 'images/TrocknerBilder/DSC04891.jpg'
-#  args['pattern'] = 'images/TrocknerDruckdaten/32BZ5BXY.png'
-  
-  
-  
-
-  #### negative
-  args['image'] = 'images/TrocknerBilder/temp2.png'
-  args['pattern'] = 'images/TrocknerDruckdaten/4VY1YHI4.png'
-
-#  args['image'] = 'images/TrocknerBilder/DSC04883.jpg'
-#  args['pattern'] = 'images/TrocknerDruckdaten/4VY1YHI4.png'
-  
-#  args['image'] = 'images/TrocknerBilder/DSC04893.jpg'
-#  args['pattern'] = 'images/TrocknerDruckdaten/4VY1YHI4.png'
-
-#  args['image'] = 'images/TrocknerBilder/DSC04895.jpg'
-#  args['pattern'] = 'images/TrocknerDruckdaten/4VY1YHI4.png'
-  
-#  args['image'] = 'images/TrocknerBilder/DSC04881.jpg'
-#  args['pattern'] = 'images/TrocknerDruckdaten/4VY1YHI4.png'
-  
-#  args['image'] = 'images/TrocknerBilder/temp1.png'
-#  args['pattern'] = 'images/TrocknerDruckdaten/4VY1YHI4.png'
-  
-#  args['image'] = 'images/TrocknerBilder/DSC04875.jpg'
-#  args['pattern'] = 'images/TrocknerDruckdaten/4VY1YHI4.png'
-
-# trials
-#  args['image'] = '../images/vacation_dataset/117800.png'
-#  args['pattern'] = '../images/vacation_dataset/117801.png'
-
 arg_img = args['image']
 arg_pattern = args['pattern']
 print("Image is file:"+str(os.path.isfile(arg_img)))
