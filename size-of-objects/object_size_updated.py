@@ -1,8 +1,5 @@
 # USAGE
-# python object_size.py --image images/example_01.png --width 0.955
-# python object_size.py --image images/example_02.png --width 0.955
-# python object_size.py --image images/example_03.png --width 3.5
-# python object_size.py --image images/picsmeasure/sample01.jpg --width 3.5
+# python object_size.py --image images/sample01.jpg --width 3.5
 
 # import the necessary packages
 from scipy.spatial import distance as dist
@@ -79,7 +76,7 @@ if DEBUG:
   cv2.imshow("ref obj", imutils.resize(ref_obj_img, height=600))
 
 if len(ref_obj_pts_lst) == 1:
-  # There should be only one reference object match in the image in order to calculate the refernce dimensions accurately
+  # There should be only one reference object match in the image in order to calculate the reference dimensions accurately
   (tl, tr, br, bl) = perspective.order_points(ref_obj_pts_lst[0])
   (tltrX, tltrY) = midpoint(tl, tr)
   (blbrX, blbrY) = midpoint(bl, br)
