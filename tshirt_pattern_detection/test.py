@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 # Usage:
 # python test.py --image images/DSC04886.JPG --pattern images/4VY1YHI4.png
+# python test.py --image images/temp4.png --pattern images/4VY1YHI4.png
 
 """
 Created on Mon Nov 11 16:41:41 2019
